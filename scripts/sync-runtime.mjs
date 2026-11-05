@@ -103,6 +103,7 @@ function sanitizeConfigDefaults() {
     codex: { enabled: false, kind: 'process', command: 'codex', note: '可选：装了 codex 后在看板「Agent 依赖」里开启' },
     claude: { enabled: false, kind: 'process', command: 'claude', note: '可选：装了 Claude Code 后在看板「Agent 依赖」里开启' },
     shell: { enabled: true, kind: 'process', command: isWin ? 'pwsh' : 'bash', args: isWin ? ['-NoProfile', '-Command'] : ['-lc'] },
+    grok: { enabled: false, kind: 'http', bridgeUrl: 'http://127.0.0.1:8799', chat: '', note: '可选：本机装了 Grok Bot（D:\\bot\\bridge.mjs 消息桥）才开；它会在桌面会话里真的打字' },
     proc: { enabled: false, kind: 'process', command: '', note: '通用命令执行器：需要显式 command 再开启；自然语言任务不会被路由到这里' },
   };
   console.log('  ✓ 执行器默认值已收敛（开：llm/dsh/shell；关：pi/codex/claude/proc，由用户按需开启）');

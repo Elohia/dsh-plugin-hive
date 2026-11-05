@@ -28,8 +28,9 @@ async function loadExecutors() {
   try { return await import('../executors/index.mjs'); } catch { return null; }
 }
 
-/** 只有这些执行器能接「自然语言目标」；shell/proc 只能接显式命令，绝不派 NL 任务 */
-const TASK_EXECUTORS = ['llm', 'dsh', 'pi', 'codex', 'claude'];
+/** 只有这些执行器能接「自然语言目标」；shell/proc 只能接显式命令，绝不派 NL 任务
+ *  grok：Grok Bot 的人格会话（有记忆、无工具），用于研究/分析/起草 */
+const TASK_EXECUTORS = ['llm', 'dsh', 'pi', 'codex', 'claude', 'grok'];
 
 async function availableExecutors() {
   const ex = await loadExecutors();

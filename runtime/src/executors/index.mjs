@@ -17,6 +17,7 @@ import pi from './pi.mjs';
 import codex from './codex.mjs';
 import claude from './claude.mjs';
 import shell from './shell.mjs';
+import grok from './grok.mjs';
 
 const EXECUTORS = new Map([
   [llm.name, llm],
@@ -25,6 +26,8 @@ const EXECUTORS = new Map([
   [codex.name, codex],
   [claude.name, claude],
   [shell.name, shell],
+  // Grok Bot（本地消息桥 http://127.0.0.1:8799）：一个有记忆的人格会话当执行者
+  [grok.name, grok],
   // 通用兜底：跑任意命令（config.executors.proc.command 或 ctx.command）
   [proc.name, proc],
 ]);

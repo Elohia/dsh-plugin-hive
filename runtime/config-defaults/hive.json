@@ -123,6 +123,13 @@
         "-Command"
       ]
     },
+    "grok": {
+      "enabled": false,
+      "kind": "http",
+      "bridgeUrl": "http://127.0.0.1:8799",
+      "chat": "",
+      "note": "可选：本机装了 Grok Bot（D:\\bot\\bridge.mjs 消息桥）才开；它会在桌面会话里真的打字"
+    },
     "proc": {
       "enabled": false,
       "kind": "process",
