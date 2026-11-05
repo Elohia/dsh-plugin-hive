@@ -94,7 +94,8 @@ export function createEngine({ log = () => {}, onEvent = () => {} } = {}) {
   }
 
   async function doTriage() {
-    const r = await router.triageInbox({ limit: 15 });
+    // 插件模式一次只判 5 条：走的是宿主的模型链路，15 条会超过 240s 脉冲超时（实测踩过）
+    const r = await router.triageInbox({ limit: 5 });
     emit('triage', `判定 ${r.length} 项`);
     return r;
   }
