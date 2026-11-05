@@ -263,7 +263,7 @@ export function createEngine({ log = () => {}, onEvent = () => {} } = {}) {
       const cfg = loadConfig();
       return {
         running, startedAt, ticks, lastError,
-        draining,
+        draining, ticking,
         tickSec: 3,
         pulseTimeoutSec: cfg.settings.pulseTimeoutSec,
         db: { items: q.get('SELECT COUNT(*) n FROM items')?.n ?? 0, tasks: q.get('SELECT COUNT(*) n FROM tasks')?.n ?? 0 },
