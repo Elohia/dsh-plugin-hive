@@ -212,11 +212,12 @@ function normalizeProbes(raw) {
     if (v && typeof v === 'object') {
       out[name] = {
         ok: !!v.ok,
+        disabled: v.disabled === true,
         reason: v.reason ?? null,
         version: v.version ?? null,
       };
     } else {
-      out[name] = { ok: !!v, reason: null, version: null };
+      out[name] = { ok: !!v, disabled: false, reason: null, version: null };
     }
   }
   return out;
@@ -1080,6 +1081,7 @@ async function agents(ctx) {
       name,
       kind: p.kind ?? cfg.executors?.[name]?.kind ?? null,
       enabled: p.enabled ?? (cfg.executors?.[name]?.enabled !== false),
+      disabled: p.disabled === true,
       ok: !!p.ok,
       version: p.version ?? null,
       reason: p.ok ? null : (p.reason ?? (probes[name] ? null : 'probe 未返回该执行器')),
@@ -1113,7 +1115,8 @@ async function agents(ctx) {
     runtimes,
     summary: {
       executors: executors.length,
-      available: executors.filter((e) => e.ok).length,
+      available: executors.filter((e) => e.ok && !e.disabled).length,
+      disabled: executors.filter((e) => e.disabled).length,
       enabled: executors.filter((e) => e.enabled).length,
       runs24h: sum((e) => e.runs24h.total),
       ok24h: sum((e) => e.runs24h.ok),

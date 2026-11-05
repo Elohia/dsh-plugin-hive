@@ -94,40 +94,25 @@
       "args": [
         "--profile",
         "headless"
-      ],
-      "cwdMode": "task",
-      "coldStartSec": 55,
-      "note": "dsh --profile headless \"<job>\" prints final answer and exits"
+      ]
     },
     "pi": {
-      "enabled": true,
+      "enabled": false,
       "kind": "process",
       "command": "pi",
-      "args": [
-        "-p",
-        "--mode",
-        "json"
-      ],
-      "cwdMode": "task"
+      "note": "可选：装了 pi 后在看板「Agent 依赖」里开启"
     },
     "codex": {
-      "enabled": true,
+      "enabled": false,
       "kind": "process",
       "command": "codex",
-      "args": [
-        "exec",
-        "--skip-git-repo-check"
-      ],
-      "cwdMode": "task"
+      "note": "可选：装了 codex 后在看板「Agent 依赖」里开启"
     },
     "claude": {
-      "enabled": true,
+      "enabled": false,
       "kind": "process",
       "command": "claude",
-      "args": [
-        "-p"
-      ],
-      "cwdMode": "task"
+      "note": "可选：装了 Claude Code 后在看板「Agent 依赖」里开启"
     },
     "shell": {
       "enabled": true,
@@ -136,8 +121,13 @@
       "args": [
         "-NoProfile",
         "-Command"
-      ],
-      "cwdMode": "task"
+      ]
+    },
+    "proc": {
+      "enabled": false,
+      "kind": "process",
+      "command": "",
+      "note": "通用命令执行器：需要显式 command 再开启；自然语言任务不会被路由到这里"
     }
   },
   "settings": {
