@@ -205,7 +205,8 @@
         ".txt",
         ".html",
         ".json"
-      ]
+      ],
+      "snippetChars": 2000
     },
     "calendar": {
       "enabled": true,
