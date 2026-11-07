@@ -104,6 +104,14 @@ export function createEngine({ log = () => {}, onEvent = () => {} } = {}) {
     return r;
   }
 
+  async function doReap() {
+    const { reap } = await import('./runtime/src/task/reap.mjs');
+    const r = reap({ cfg: loadConfig() });
+    const total = r.aged + r.overflow + r.folded;
+    if (total) emit('reap', `收敛 ${total} 条：${r.before} → ${r.after}（老化 ${r.aged} / 超容 ${r.overflow} / 折叠 ${r.folded}）`);
+    return r;
+  }
+
   async function doWatchdog() {
     const a = await watchdog.tick();
     if (a.length) emit('watchdog', `回收/终止 ${a.length} 个任务`, a, 'warn');
@@ -150,6 +158,7 @@ export function createEngine({ log = () => {}, onEvent = () => {} } = {}) {
     scan: (p) => doScan(p.config?.source),
     triage: () => doTriage(),
     watchdog: () => doWatchdog(),
+  reap: () => doReap(),
     digest: (p) => doDigest(p.config?.slot || 'morning'),
     context: () => doContext(),
     selfcheck: () => doSelfcheck(),

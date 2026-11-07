@@ -163,7 +163,15 @@
       "L4": 1,
       "L5": 1
     },
-    "pulseTimeoutSec": 240
+    "pulseTimeoutSec": 240,
+    "quietAction": "archive",
+    "reap": {
+      "enabled": true,
+      "inboxTtlDays": 3,
+      "inboxMax": 60,
+      "foldDuplicates": true,
+      "staleInfoDays": 1
+    }
   },
   "notify": {
     "toast": {
